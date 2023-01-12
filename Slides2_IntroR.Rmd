@@ -24,6 +24,18 @@ library(wooldridge)
 
 ## Setting up your account
 
+- Make an account on R Studio Cloud (aka Posit Cloud)
+
+- Join the course work space by clicking the link in the canvas announcement
+
+- upgrade your account to a student account for $5/month to get access to more RAM
+
+- If you want to follow along with the coding in class today:
+
+    - Start the Slides2_Started_inR assignment
+    
+    - Open and download the Slides2_chinks.txt file from canvas
+
 
 
 ##  R Markdown
@@ -53,7 +65,7 @@ All of my lecture slides and notes are made in R Markdown!
 
 - Give your file a title
 
-- Set it to compile to HTML
+- Set it to compile to PDF
 
 - Click OK
        
@@ -88,17 +100,17 @@ This file is a combination of:
 
 - R code in the chunks (the grey parts)
 
-When you ``Knit'' an R markdown file, you will produce an HTML document (or PDF or WORD...) that combines your text, code and code output.
+When you ``Knit'' an R markdown file, you will produce a PDF document (or HTML or WORD...) that combines your text, code and code output.
 
 
 ##  R Markdown: Your R Markdown File
    ![]("images\Rmarkdown5.png"){width=60%}
 
-And when prompted, save your html file to your workspace
+And when prompted, save your PDF file to your workspace
  
 ##  R Markdown: Your R Markdown File
  
-Congrats! You now have an html document with the default Rmarkdown example code and text!
+Congrats! You now have a PDF document with the default Rmarkdown example code and text!
 
 Let's move beyond the default...
 
@@ -126,7 +138,7 @@ Let's fix that. Replace the word pressure with cars in the `plot()` function and
 
 ##  R Markdown: Edit the R code
 
-Congrats! Your html file should now show a new scatterplot of the cars data.  
+Congrats! Your PDF file should now show a new scatterplot of the cars data.  
 
 
 ##  R Markdown: Code "chunks"

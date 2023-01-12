@@ -1,0 +1,299 @@
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=5, fig.height=2) 
+library("lfe")
+library("stargazer")
+library(wooldridge)
+
+```
+
+
+
+
+
+
+```{r, echo = TRUE}
+x <- 2 # Assign the value 2 to the variable x
+y <- 3 # Assign the value 3 to the variable y
+z <- x + y # Add x and y
+z
+```
+
+
+
+
+
+
+
+
+```{r library, echo=TRUE}
+library(stats) #loading the stats package
+library("lfe")
+library("stargazer")
+library(wooldridge)
+```
+
+
+
+
+
+
+
+
+ 
+```{r packages, echo=TRUE}
+#install.packages("ggplot2")
+```
+
+
+
+
+
+
+
+
+
+```{r loaddata, echo=TRUE}
+olympics <- read.csv("olympics_data.csv")
+
+View(olympics) #opens the data in the data viewer
+
+head(olympics,5) #prints the first 5 rows of data in the console (or knitr doc)
+```
+
+
+
+
+
+
+
+```{r dplyr, echo=TRUE, warnings=FALSE}
+# Load Dplyr
+library(dplyr)
+```
+
+
+
+
+
+
+
+```{r select, echo=TRUE}
+olympics2<-olympics %>% select(country, year, type, gold, silver, bronze, population, gdp)
+head(olympics2)
+```
+
+
+
+
+
+
+
+
+```{r filter, echo=TRUE}
+us_olympics<-olympics2 %>% filter(country == "United States")
+head(us_olympics)
+```
+
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+uss10_olympics<-olympics2 %>% filter(country == "United States" & type == "summer" & year >= 2010)
+head(uss10_olympics)
+```
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+olympics_SG<-olympics2 %>% filter(silver > 10 | gold > 4)
+head(olympics_SG)
+```
+
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+olympics_LA<-olympics2 %>% filter(country %in% c("Argentina", "Colombia", "Brazil", "Mexico"))
+```
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+olympics_nomiss <- olympics2 %>% filter(!is.na(population))
+head(olympics_nomiss)
+```
+
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+#method 1: use the mutate function in dplyr
+olympics2 <- olympics2 %>% mutate(total = gold + silver + bronze) 
+
+#method 2: using base R
+olympics2$total2<-olympics2$gold+olympics2$silver+olympics2$bronze 
+head(olympics2)
+```
+
+
+
+
+
+
+
+```{r, echo=TRUE, warnings=FALSE, message = FALSE}
+olympics_totals<-olympics2 %>% group_by(country, type) %>% summarize(total_medals = sum(total))
+
+head(olympics_totals)
+```
+
+
+
+
+
+```{r, echo=TRUE}
+olympics_sumavg<-olympics2 %>% filter(type == "summer")%>%
+  group_by(country) %>%
+  summarize(avg_total = mean(total)) 
+
+head(olympics_sumavg)
+```
+
+
+
+
+
+```{r}
+# Install GGplot2
+# install.packages("ggplot2")
+
+# Load  GGplot2
+library(ggplot2)
+```
+
+
+
+
+
+
+```{r, echo=TRUE}
+olympics_plot1<-olympics2 %>% filter(type == "summer" & !is.na(population))
+
+head(olympics_plot1)
+```
+
+
+
+
+
+
+
+```{r, echo=TRUE}
+summary(olympics_plot1$population)
+sd(olympics_plot1$population)
+```
+
+
+
+
+
+
+```{r, echo=TRUE}
+
+hist(olympics_plot1$population)
+```
+
+
+
+
+
+
+```{r, echo=TRUE}
+my_plot1<-ggplot(data = olympics_plot1, aes(x = population, y = total))+
+  geom_point(size=6, shape=23)
+my_plot1
+```
+
+
+
+
+
+```{r, echo=TRUE}
+olympics_plot2<-olympics2 %>%
+  filter(type == "summer" & !is.na(population)& population<400)%>%
+  group_by(country)%>% 
+  mutate(total = gold + silver + bronze) %>%
+  summarize(avg_total = mean(total), avg_pop=mean(population)) 
+
+my_plot2<-ggplot(data = olympics_plot2, aes(x =avg_pop, y = avg_total))+
+  geom_point(size=2,shape=23, color="magenta1")+ 
+  labs(x = "Population in millions (mean)", y = "All medals (mean)")+
+  theme_minimal()
+my_plot2
+```
+
+
+```{r, echo=TRUE}
+olympics_plot3<-olympics2 %>%
+  filter(type == "summer" & !is.na(population)& !is.na(gdp))%>%
+  group_by(country)%>% 
+  mutate(total = gold + silver + bronze) %>%
+  summarize(avg_total = mean(total), avg_pop=mean(population), avg_gdp=mean(gdp))%>%
+  mutate(avg_total_cap=avg_total/avg_pop, avg_gdp_cap=avg_gdp/avg_pop)%>%
+  filter(avg_pop>=1)
+
+my_plot3<-ggplot(data = olympics_plot3, aes(x =avg_gdp_cap, y =avg_total_cap ))+
+  geom_point(size=2,shape=23, color="magenta1")+ 
+  labs(x = "?", y = "?")+
+  theme_minimal()
+my_plot3
+```
+
+
+
+
+
+
+```{r, echo=TRUE}
+reg<-felm(avg_total_cap~avg_gdp_cap, olympics_plot3)
+summary(reg)
+```
+
+
+
+
+
+```{r, echo=TRUE, results='asis'}
+reg<-felm(avg_total_cap~avg_gdp_cap, olympics_plot3)
+stargazer(reg, type = "latex",  header=FALSE)
+```
+
+
+
+
+```{r}
+#help(rnorm)
+```
