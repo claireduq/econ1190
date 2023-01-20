@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.20)  4 JAN 2023 11:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.20)  20 JAN 2023 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1150,17 +1150,25 @@ Package pdftex.def Info: images/errors.png  used on input line 291.
 
 (./Slides3_RegressionReview.vrb) [13
 
-] [14
+] (./Slides3_RegressionReview.vrbpdfTeX warning (ext4): destination with the sa
+me identifier (name{reg-review-scaling-1}) has been already used, duplicate ign
+ored
+<to be read again> 
+                   \relax 
+l.2 \protect\hypertarget{reg-review-scaling-1}{}
+                                                ) [14
 
 ] [15
+
+] [16
 
 ]
 \openout4 = `Slides3_RegressionReview.vrb'.
 
-(./Slides3_RegressionReview.vrb) [16
+(./Slides3_RegressionReview.vrb) [17
 
 ]
-<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-9-1.pdf, id=151, 36
+<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-9-1.pdf, id=157, 36
 1.35pt x 144.54pt>
 File: Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-9-1.pdf Graphi
 c file (type pdf)
@@ -1168,15 +1176,15 @@ c file (type pdf)
 Package pdftex.def Info: Slides3_RegressionReview_files/figure-beamer/unnamed-c
 hunk-9-1.pdf  used on input line 540.
 (pdftex.def)             Requested size: 307.29231pt x 122.9169pt.
-[17
+[18
 
  <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-9-1.pdf>]
 \openout4 = `Slides3_RegressionReview.vrb'.
 
-(./Slides3_RegressionReview.vrb) [18
+(./Slides3_RegressionReview.vrb) [19
 
 ]
-<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-11-1.pdf, id=171, 3
+<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-11-1.pdf, id=177, 3
 61.35pt x 144.54pt>
 File: Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-11-1.pdf Graph
 ic file (type pdf)
@@ -1184,12 +1192,12 @@ ic file (type pdf)
 Package pdftex.def Info: Slides3_RegressionReview_files/figure-beamer/unnamed-c
 hunk-11-1.pdf  used on input line 583.
 (pdftex.def)             Requested size: 307.29231pt x 122.9169pt.
-[19
+[20
 
  <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-11-1.pdf>]
 \openout4 = `Slides3_RegressionReview.vrb'.
 
-(./Slides3_RegressionReview.vrb) [20
+(./Slides3_RegressionReview.vrb) [21
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1228,7 +1236,7 @@ s/m/n/10 6\OT1/lmss/m/n/10 )(\T1/lmss/m/n/10 0\OT1/lmss/m/n/10 ) + \T1/lmss/m/n
 /m/n/10 0\OML/lmm/m/it/10 :\T1/lmss/m/n/10 12 \OMS/lmsy/m/n/10 ^^B []
  []
 
-<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-13-1.pdf, id=190, 3
+<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-13-1.pdf, id=195, 3
 61.35pt x 144.54pt>
 File: Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-13-1.pdf Graph
 ic file (type pdf)
@@ -1236,12 +1244,12 @@ ic file (type pdf)
 Package pdftex.def Info: Slides3_RegressionReview_files/figure-beamer/unnamed-c
 hunk-13-1.pdf  used on input line 628.
 (pdftex.def)             Requested size: 307.29231pt x 122.9169pt.
-[21
+[22
 
  <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-13-1.pdf>]
 \openout4 = `Slides3_RegressionReview.vrb'.
 
-(./Slides3_RegressionReview.vrb) [22
+(./Slides3_RegressionReview.vrb) [23
 
 ]
 Overfull \hbox (19.64331pt too wide) detected at line 692
@@ -1257,10 +1265,10 @@ lmm/m/it/10.95 :\T1/lmss/m/n/10.95 6 \OMS/lmsy/m/n/10.95 ^^B \T1/lmss/m/sl/10.9
 5 age\OML/lmm/m/it/10.95 :
  []
 
-[23
+[24
 
 ]
-<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-15-1.pdf, id=214, 3
+<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-15-1.pdf, id=219, 3
 61.35pt x 144.54pt>
 File: Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-15-1.pdf Graph
 ic file (type pdf)
@@ -1268,10 +1276,10 @@ ic file (type pdf)
 Package pdftex.def Info: Slides3_RegressionReview_files/figure-beamer/unnamed-c
 hunk-15-1.pdf  used on input line 701.
 (pdftex.def)             Requested size: 307.29231pt x 122.9169pt.
-[24
+[25
 
  <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-15-1.pdf>]
-<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-16-1.pdf, id=226, 3
+<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-16-1.pdf, id=232, 3
 61.35pt x 144.54pt>
 File: Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-16-1.pdf Graph
 ic file (type pdf)
@@ -1279,18 +1287,13 @@ ic file (type pdf)
 Package pdftex.def Info: Slides3_RegressionReview_files/figure-beamer/unnamed-c
 hunk-16-1.pdf  used on input line 712.
 (pdftex.def)             Requested size: 307.29231pt x 122.9169pt.
-[25
+[26
 
- <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-16-1.pdf>] [26
-
-] [27
+ <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-16-1.pdf>] [27
 
 ] [28
 
-]
-\openout4 = `Slides3_RegressionReview.vrb'.
-
-(./Slides3_RegressionReview.vrb) [29
+] [29
 
 ]
 \openout4 = `Slides3_RegressionReview.vrb'.
@@ -1298,7 +1301,12 @@ hunk-16-1.pdf  used on input line 712.
 (./Slides3_RegressionReview.vrb) [30
 
 ]
-<img_with_inset.png, id=272, 341.02406pt x 233.37187pt>
+\openout4 = `Slides3_RegressionReview.vrb'.
+
+(./Slides3_RegressionReview.vrb) [31
+
+]
+<img_with_inset.png, id=278, 341.02406pt x 233.37187pt>
 File: img_with_inset.png Graphic file (type png)
 <use img_with_inset.png>
 Package pdftex.def Info: img_with_inset.png  used on input line 841.
@@ -1308,16 +1316,16 @@ Overfull \hbox (33.74896pt too wide) in paragraph at lines 841--841
 [][]  
  []
 
-[31
+[32
 
- <./img_with_inset.png>] [32
+ <./img_with_inset.png>] [33
 
-] [33
+] [34
 
 ]
 \openout4 = `Slides3_RegressionReview.vrb'.
 
-(./Slides3_RegressionReview.vrb) [34
+(./Slides3_RegressionReview.vrb) [35
 
 ]
 \openout4 = `Slides3_RegressionReview.vrb'.
@@ -1326,15 +1334,15 @@ Overfull \hbox (33.74896pt too wide) in paragraph at lines 841--841
 
 Package hyperref Warning: Ignoring empty anchor on input line 13.
 
-) [35
+) [36
 
 ]
-<images/cluster_comic.png, id=308, 668.4975pt x 218.61674pt>
+<images/cluster_comic.png, id=313, 668.4975pt x 218.61674pt>
 File: images/cluster_comic.png Graphic file (type png)
 <use images/cluster_comic.png>
 Package pdftex.def Info: images/cluster_comic.png  used on input line 966.
 (pdftex.def)             Requested size: 307.29837pt x 100.49486pt.
-[36
+[37
 
  <./images/cluster_comic.png (PNG copy)>]pdfTeX warning (ext4): destination wit
 h the same identifier (name{clustered-standard-errors}) has been already used, 
@@ -1347,19 +1355,19 @@ File: images/cluster_comic.png Graphic file (type png)
 <use images/cluster_comic.png>
 Package pdftex.def Info: images/cluster_comic.png  used on input line 966.
 (pdftex.def)             Requested size: 307.29837pt x 100.49486pt.
-[37
-
-] [38
+[38
 
 ] [39
 
 ] [40
 
+] [41
+
 ]
 \openout4 = `Slides3_RegressionReview.vrb'.
 
 (./Slides3_RegressionReview.vrb
-<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-19-1.pdf, id=339, 3
+<Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-19-1.pdf, id=344, 3
 61.35pt x 144.54pt>
 File: Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-19-1.pdf Graph
 ic file (type pdf)
@@ -1367,7 +1375,7 @@ ic file (type pdf)
 Package pdftex.def Info: Slides3_RegressionReview_files/figure-beamer/unnamed-c
 hunk-19-1.pdf  used on input line 24.
 (pdftex.def)             Requested size: 307.29231pt x 122.9169pt.
-) [41
+) [42
 
  <./Slides3_RegressionReview_files/figure-beamer/unnamed-chunk-19-1.pdf>]
 \openout4 = `Slides3_RegressionReview.vrb'.
@@ -1376,7 +1384,7 @@ hunk-19-1.pdf  used on input line 24.
 
 Package hyperref Warning: Ignoring empty anchor on input line 16.
 
-) [42
+) [43
 
 ]
 \tf@nav=\write7
@@ -1397,8 +1405,8 @@ d.
 (rerunfilecheck)             Checksum: 035C3AD4CEBFF91027002FF98BB4B122;661.
  ) 
 Here is how much of TeX's memory you used:
- 21662 strings out of 480559
- 408244 string characters out of 5901696
+ 21666 strings out of 480559
+ 408321 string characters out of 5901696
  683451 words of memory out of 5000000
  38634 multiletter control sequences out of 15000+600000
  470051 words of font info for 79 fonts, out of 8000000 for 9000
@@ -1429,10 +1437,10 @@ nts/type1/public/lm/lmtt8.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/texmf-di
 st/fonts/type1/public/lm/lmtti10.pfb><c:/Users/Claire/AppData/Roaming/TinyTeX/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Users/Claire/AppDa
 ta/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Slides3_RegressionReview.pdf (42 pages, 662536 bytes).
+Output written on Slides3_RegressionReview.pdf (43 pages, 663840 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 125 named destinations out of 1000 (max. 500000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
+ 127 named destinations out of 1000 (max. 500000)
  122 words of extra memory for PDF output out of 10000 (max. 10000000)
 

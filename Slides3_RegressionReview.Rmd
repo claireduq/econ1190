@@ -163,14 +163,15 @@ The European in me does not like the regression where distance is measured in fe
 ## Reg Review: Scaling
 \tiny
 ```{r, echo=TRUE}
-cars$speed_kmh=cars$speed*1.61 #1 foot=0.3 meters
-cars$dist_m=cars$dist*0.3 #1 mile=1.61 km
+cars$speed_kmh=cars$speed*1.61  #1 mile=1.61 km 
+cars$dist_m=cars$dist*0.3 #1 foot=0.3 meters
 
 reg_metric1<-lm(dist_m~speed, cars)
 reg_metric1 
 ```
 \normalsize
 Scaling $Y$ by $c=0.3$: all coefficients get multiplied by $c$
+\pause
 \tiny
 ```{r, echo=TRUE}
 reg_metric2<-lm(dist_m~speed_kmh, cars)

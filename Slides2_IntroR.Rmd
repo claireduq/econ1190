@@ -34,7 +34,7 @@ library(wooldridge)
 
     - Start the Slides2_Started_inR assignment
     
-    - Open and download the Slides2_chinks.txt file from canvas
+    - Open and download the Slides2_chunks.txt file from canvas
 
 
 

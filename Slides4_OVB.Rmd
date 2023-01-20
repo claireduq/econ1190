@@ -2,6 +2,8 @@
 title: "ECON 1190: Applied Econometrics 2:  \nModule 1: Omitted Variable Bias"
 author: "Claire Duquennois"
 date: ""
+header-includes:
+   - \usepackage{caption}
 output:
   beamer_presentation: default
   pdf_document: default
@@ -14,6 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(fig.width=9, fig.height=5) 
 library("lfe")
 library("stargazer")
+library("dplyr")
 
 ```
 ## Module 1: Regressions,causality and bias
@@ -260,7 +263,7 @@ To understand causal inference, it is helpful to think about how a unit has diff
 ## The Rubin Causal Model
 
 
-Let $D_i$ be a binary treatment variable that could affect $Y_i$ which is the oucome $Y$ of observation $i$. Each unit faces two potential outcomes:
+Let $D_i$ be a binary treatment variable that could affect $Y_i$ which is the outcome $Y$ of observation $i$. Each unit faces two potential outcomes:
 
 $$
 \begin{split}
@@ -372,9 +375,10 @@ $$
 Y_i&=Y_i(0)+(Y_i(1)-Y_i(0))D_i\\
 \end{aligned}
 $$
+
 ## Getting to an econometric specification
 
-Suppose a constant treatment effect such that $\tau=Y_i(1)-Y_i(0)$: The treatment effect is the same for all observations. Then
+Suppose a constant causal treatment effect such that $\tau=Y_i(1)-Y_i(0)$: The treatment effect is the same for all observations. Then
 
 $$
 \begin{aligned}
@@ -422,7 +426,7 @@ so that the difference between these outcomes can be broken down into
 
 $$
  E[Y_i(1)]-E[Y_i(0)] = 
-    \underbrace{\tau}_\text{treatment effect} + \underbrace{E[\eta_i|D_i=1]-E[\eta_i|D_i=0]}_\text{?}
+    \underbrace{\tau}_\text{causal treatment effect} + \underbrace{E[\eta_i|D_i=1]-E[\eta_i|D_i=0]}_\text{?}
 $$
 
 What is the second term?  $\Rightarrow$ Top Hat
@@ -442,24 +446,36 @@ so that the difference between these outcomes can be broken down into
 
 $$
  E[Y_i(1)]-E[Y_i(0)] = 
-    \underbrace{\tau}_\text{treatment effect} + \underbrace{E[\eta_i|D_i=1]-E[\eta_i|D_i=0]}_\text{selection bias}
+    \underbrace{\tau}_\text{causal treatment effect} + \underbrace{E[\eta_i|D_i=1]-E[\eta_i|D_i=0]}_\text{selection bias}
 $$
 
 
 
-## The Conditional Independence Assumption
+## Selection Bias
 
-So if I run $Y_i=\alpha+\tau D_i+\eta_i$, the estimated $\tilde{\tau}\neq \tau$ if there is selection bias such that $E[\eta_i|D_i=1]\neq E[\eta_i|D_i=0]$. 
+So if $E[\eta_i|D_i=1]\neq E[\eta_i|D_i=0]$ and I run
+$$
+Y_i=\alpha+\tilde{\tau} D_i+\eta_i
+$$
 
-This will occur if absent treatment, those who would select into treatment have a different expected outcome compared to those who would not select into treatment
+the estimated $\tilde{\tau}\neq \tau$ because of selection bias since
+
+$$
+\tilde{\tau}=\tau+E[\eta_i|D_i=1]-E[\eta_i|D_i=0]
+$$
+
+## Selection Bias
+
+
+Selection bias will occur if treatment is not random. 
+
+If treatment is not random,  those who would select into treatment have a different expected outcome, even absent treatment, than those who would not select into treatment so
 $$
 E[Y_i(0)|D_i=1]\neq E[Y_i(0)|D_i=0],
 $$ 
-because treatment is not random. Formally,
+In English:
 
-$$
-\{Y_i(1), Y_i(0)\} \not\perp  D_i.
-$$
+  - even absent treatment (since we are comparing the untreated outcomes$Y_i(0)$) the average for those who would select into treatment (so who have $D_i=1$) is not the same as for those who do not select into treatment (so who have $D_i=0$)
 
 ## Example
 
@@ -488,45 +504,54 @@ If I want to estimate $\tau$, the **causal** effect of a college degree on earni
 Why? 
 
 \underline{Selection bias:} If people who receive college degrees would have had higher earnings even without the degree,
-
 $$
-E[\eta_i|D_i=1]>E[\eta_i|D_i=0].
+E[Y_i(0)|D_i=1]> E[Y_i(0)|D_i=0]
+$$
+so
+$$
+E[\eta_i|D_i=1]>E[\eta_i|D_i=0]
+$$
+and 
+$$
+\tilde{\tau}=\tau+E[\eta_i|D_i=1]-E[\eta_i|D_i=0]
 $$
 
 ## The Conditional Independence Assumption
 
-**The Conditional Independence Assumption**: conditional on observed characteristics, $X_i$, selection bias disappears and 
+**The Conditional Independence Assumption**: conditional on observed characteristics, $X_i$, selection bias disappears.
+
+- If CIA holds, once I control for $X_i$, treatment is as good as randomly assigned:
 $$
-\{Y_i(1), Y_i(0)\} \perp  D_i|X_i.
+E[Y_i(0)|X_i, D_i=1]=E[Y_i(0)|X_i, D_i=0]
 $$
 
-If CIA holds, once I control for $X_i$, treatment is as good as randomly assigned. If this is the case, our comparisons have a causal interpretation and 
+and our comparisons have a causal interpretation.
 
-$$
-E[Y_i(1)|X_i]-E[Y_i(0)|X_i]=E[Y_i(1)-Y_i(0)|X_i].
-$$
-
+- In other words, if I can perfectly control for **all** the $X_i$ characteristics that generate selection, I can recover an unbiased estimate of the causal effect $\tau$. 
 
 ## CIA in Regressions
 
-If I estimate $Y_i=\alpha+\tau D_i +\eta_i$, $E[\tilde{\tau}]\neq \tau$ due to selection bias. **Now suppose CIA holds given a vector of observed covariates, $X'_i$.**
+ I run $Y_i=\alpha+\tilde{\tau} D_i +\eta_i$, but $E[\tilde{\tau}]\neq \tau$ due to selection bias.
+ 
+ **I add observed covariates $X'_i$ to the regression:**
+ 
+- I can decompose $\eta_i$:  $\eta_i=X'_i\gamma+\nu_i$ into  
+    - $X'_i\gamma$: a part explained by the covariates $X'_i$
+    - an unexplained error $\nu_i$
 
-- I can decompose $\eta_i$:  $\eta_i=X'_i\gamma+\nu_i$ with: $E[\eta_i|X_i]=X'_i\gamma$
+- **If the CIA assumption holds given the added covariates $X_i$** then $E[\nu_i|D_i=1]=E[\nu_i|D_i=0]$
 
-- If the CIA assumption holds, then 
+- The difference between the treated and untreated group is
 $$
-E[Y_i(D)|X_i]=\alpha+\tau D_i+X'_i \gamma
+\begin{aligned}
+&E[Y_i(1)|X_i]-E[Y_i(0)|X_i]\\
+&=(\alpha+\tau+X'_i \gamma+E[\nu_i|D_i=1])-(\alpha+X'_i \gamma+E[\nu_i|D_i=0])\\
+&=\tau+E[\nu_i|D_i=1]-E[\nu_i|D_i=0]\\
+&=\tau
+\end{aligned}
 $$
-and 
-$$
-Y_i(D)=\alpha+\tau D_i+X'_i \gamma+\nu_i
-$$
-where the $\nu_i$ residuals are uncorrelated with $D_i$ and $X'_i$.
 
-- Thus
-$$
-E[\hat{\tau}]=\tau
-$$
+
 and we can interpret $\hat{\tau}$ as the causal effect of interest.
 
 
@@ -543,7 +568,7 @@ earnings_i=\hat{\alpha}+\hat{\tau}college_i+\hat{\gamma}hhinc_i+\epsilon_i
 $$
  and $E[\hat{\tau}]=\tau$: a college degree causes earnings to increase by $\hat{\tau}$ USD. 
  
- **WARNING: This is a big assumption, that often does not hold.** 
+ **WARNING: This is a big assumption, that often does not hold. Do you think it holds in this example?** 
 
 
 
@@ -589,7 +614,7 @@ We can thus sign the bias by signing $\beta_2$, the covariance between $x_{2i}$ 
 
 I am interested in how health relates to income. Using my CPS sample of working age adults I estimate
 $$
-Income_i=\beta_0+\beta_1Health_i+\epsilon, 
+Income_i=\beta_0+\beta_1BadHealth_i+\epsilon, 
 $$
 where heath is a respondents subjective assessment of their health with 1 being very healthy and 5 being very unhealthy. 
 
@@ -597,7 +622,8 @@ where heath is a respondents subjective assessment of their health with 1 being 
 
 \tiny
 ```{r chinkhealth1, echo=TRUE}
-reghealth<-lm(inctot~health,mydata)
+mydata <- mydata %>% rename(bad_health = health)
+reghealth<-lm(inctot~bad_health,mydata)
 summary(reghealth)
 ```
 \normalsize
@@ -615,7 +641,7 @@ $\Rightarrow$ Top Hat
 
 How might the omission of age be biasing these estimates?
 
-- $cov(health_i,age_i)>0$ 
+- $cov(badhealth_i,age_i)>0$ 
 
 - $cov(income_i,age_i)>0$
 
@@ -627,7 +653,7 @@ How might the omission of age be biasing these estimates?
 \tiny
 ```{r chunk4, echo=TRUE}
 
-reghealth2<-lm(inctot~health+age ,mydata)
+reghealth2<-lm(inctot~bad_health+age ,mydata)
 summary(reghealth2)
 
 ```
@@ -644,7 +670,7 @@ $\Rightarrow$ Top Hat
 
 How might the omission of schooling be biasing these estimates?
 
-- $cov(health_i,schooling_i)<0$ 
+- $cov(badhealth_i,schooling_i)<0$ 
 
 - $cov(income_i,schooling_i)>0$ 
 
@@ -655,7 +681,7 @@ How might the omission of schooling be biasing these estimates?
 \tiny
 ```{r chunk5, echo=TRUE}
 
-reghealth3<-lm(inctot~health+age+edu ,mydata)
+reghealth3<-lm(inctot~bad_health+age+edu ,mydata)
 summary(reghealth3)
 
 ```
@@ -668,7 +694,7 @@ summary(reghealth3)
 ```{r chunk6, echo=TRUE,  results = "asis"}
 
 stargazer(reghealth,reghealth2, reghealth3, type="latex", header=FALSE, 
-          title="Income and health", omit.stat=c("f", "ser"))
+          title="Income and bad health", omit.stat=c("f", "ser"))
 
 
 ```
@@ -677,7 +703,7 @@ Check out jakeruss.com/cheatsheets/stargazer/
 
 ## Example: Using CPS data
 
-So is our estimate of $\beta_1$ in column 3 the causal effect of health on income? 
+So is our estimate of $\beta_1$ in column 3 the causal effect of bad health on income? 
 
 Does the CIA hold?
 
@@ -688,7 +714,6 @@ Conditional on age and schooling, is subjective health as good as randomly assig
 ## Building intuition: A simulation
 
 Suppose the data generating process (DGP) is as follows: my outcome variable, $Y$ depends on two variables, $V_1$ and $V_2$ such that 
-
 $$
 Y_i=\beta_0+\beta_1 V_{1i}+\beta_2 V_{2i}+\epsilon_i
 $$
@@ -697,7 +722,7 @@ where $V_1$ and $V_2$ are correlated with $Cor(V_1,V_2)=0.5$.
 
 
 \tiny
-```{r sim1, echo=TRUE}
+```{r sim1, echo=TRUE, message = FALSE, warning = FALSE}
 library(MASS)
 library(ggplot2)
 
@@ -831,11 +856,6 @@ $$
 
 - The variance of our estimator will be less precise: $Var(\tilde{\beta_1})\geq Var(\hat{\beta_1})$.
 
-## Caveat: Including irrelevant variables
-
-
-\center ![]("images\curvefittingcomic.png"){width=45%}
-
 
 ## Caveat: Bad Controls
 
@@ -962,11 +982,6 @@ regexp2<-felm(vote02~state+comp_mi+comp_ia+persons+age+
 
 ```
 
-## There is no Santa Clause: AGG (2006)
-
-
-\center ![]("images\codecomic2.png"){width=50%}
-
 
 ## There is no Santa Claus: AGG (2006)
 Replicating results of columns 2 of p.49 and p.50:
@@ -981,4 +996,16 @@ stargazer(regols2,regexp2, type='latex', se = list(regols2$rse,regexp2$rse),
 Our OLS estimates are still biased. Even with all these controls, $\tilde{\tau}>\tau$.
 
 Unless you had a variable that told you if the person is the type to answer and talk to an unknown caller about voting, the kitchen sink approach will not solve the OVB problem.
+
+## Discussion questions for Washington (2008)
+
+  - What is her research question? Is it interesting? Are the effects she detects meaningful?
+
+  - Does she have an experimental design? How is she getting exogenous variation with which to identify causal effects?
+  
+  - Do you believe that the CIA assumption holds? (once she controls for key observables, her explanatory variable is as good as randomly assigned) What are some concerns she has and discusses in the paper?
+  
+  - Are you convinced she has identified a causal relationship?
+
+  
 
