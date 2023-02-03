@@ -613,9 +613,7 @@ Why were we not able to estimate a coefficient for $area_i$ and $west_i$?
 
 $\Rightarrow$ Top Hat 
 
-## Example: Crime and Unemployment
 
-\center ![]("images\Xindep.jpg"){width=75%}
 
 
 ## Example: Crime and Unemployment

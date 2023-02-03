@@ -865,6 +865,40 @@ Good controls are variables that were fixed at the time treatment was determined
 
 ## Bad Controls: Example
 
+$$
+Wages=\beta_0+\beta_1Schooling
+$$
+Assume Schooling is randomly assigned and $\beta_1>0$.
+
+Then someone estimates 
+
+$$
+Wages=\beta_0+\beta_1Schooling+\beta_2Occupation
+$$
+and now $\beta_1=0$. 
+
+**So does schooling have an effect or not?**
+
+\pause
+
+Yes! Most of the effect of schooling may very well come from occupation! It is a bad control.
+
+## Bad Controls: Example
+
+\center ![]("images\google1.png"){width=75%}
+
+## Bad Controls: Example
+
+\center ![]("images\google2.png"){width=75%}
+
+## Bad Controls: Example
+
+Including occupation dummies in a wage equation is LITERALLY the textbook example of what not to do (Angrist and Pischke, Mastering 'Metrics: The Path from Cause to Effect  p 215)
+
+\center ![]("images\google3.png"){width=75%}
+
+## Bad Controls: Top Hat Example 
+
 You are interested in smoking's effect on birth-weight. You estimate
 $$
 Brthwgt_i=\beta_0+\beta_1cigday_i+\epsilon
@@ -877,6 +911,7 @@ the number of prenatal doctor visits, mother's weight gain during pregnancy, and
 Which of these control variables should you consider adding to your specification? 
 
 $\Rightarrow$ Top Hat
+
 
 
 ## How far do controls get us?
