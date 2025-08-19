@@ -55,7 +55,7 @@ Topics covered include:
 
 Email: ced87-at-pitt.edu
 
-Office hours: Thursdays after class 5:15-6:15 in 4912 Posvar
+Office hours: Mondays after class: 4:30-5:30
 
 Personal advising/discussion: Sign up at https://sites.google.com/view/claireduquennois/teaching 
 
@@ -90,16 +90,16 @@ Personal advising/discussion: Sign up at https://sites.google.com/view/claireduq
 
 - 2 Exams 40\%: Your best performance is worth 25% your lowest 15%
 
-- 26 daily top hat 'Tiny Quizzes' 10\%: 
+- 24 daily top hat 'Tiny Quizzes' 10\%: 
 
-  - Participation 6\%: Each of 20 for 0.3\% (6 lowest are dropped)
+  - Participation 6\%: Each of 19 for 0.32\% (5 lowest are dropped)
   
   - Accuracy 4\%: let score be the number of correct answers on tiny quizzes
   
-    - if 8 $<$ score $\leq$ 11: 1\%
-    - if 11 $<$score $\leq$ 14: 2\%
-    - if 14 $<$ score $\leq$ 17: 3\%
-    - if 17 $<$ score: 4\%
+    - if 7 $<$ score $\leq$ 10: 1\%
+    - if 10 $<$score $\leq$ 13: 2\%
+    - if 13 $<$ score $\leq$ 16: 3\%
+    - if 16 $<$ score: 4\%
 
 ## Homework assignments
 
@@ -109,7 +109,16 @@ Personal advising/discussion: Sign up at https://sites.google.com/view/claireduq
 
 - You can help each other but submitted assignments cannot be identical (0 grade).
 
-- submit by due date (-5\% for each day late)
+- Due as indicated on canvas (usually Tuesdays at 10 pm)
+
+  - No assignments accepted more than 1 week late
+  
+  - each student has a quota of 90 late **hours** to use as needed
+  
+  - beyond this each extra hour costs 0.01 points off of final grade. 
+  
+  - Save these for EMERGENCIES!
+  
 
 - Regrade request to be done within a week of getting graded assignment. Avoid regrade requests for minor point changes. 
 
@@ -121,7 +130,7 @@ Personal advising/discussion: Sign up at https://sites.google.com/view/claireduq
 
 - you will be allowed 1 page of handwritten notes
 
-- see MQE exam format to get an idea of what to expect
+- see posted old exams to get an idea of what to expect
 
 
 ## Other first day stuff
@@ -161,7 +170,7 @@ $$
 
 Random variables:
 
-a variable that whose value depends on random events
+a variable  whose value depends on random events
 
 For a given outcome $x$ we may be interested in the probability that the variable $X$ achieves that outcome 
 
@@ -296,7 +305,7 @@ Next class:
 
 - To do before class: Sign up for a student account ($5 / month) and accept my invitation to the class workspace
 
-Tuesday: 
+After that: 
 
 - More review: Regressions and regressions in R
 

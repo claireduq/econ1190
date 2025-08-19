@@ -366,13 +366,15 @@ scores$post[scores$year=="2001"]<-1
 regdid<-felm(read4~post+treat+post*treat,scores)
 
 regdidfe<-felm(read4~post+treat+post*treat|class,scores)
+regdidfe2<-felm(read4~post+treat+post*treat|class+year,scores)
+
 ```
 
 ## A simulation:
 \tiny
 ```{r did1c, results="asis"}
-stargazer(regnodid, regdid,regdidfe, type="latex", header=FALSE, 
-          add.lines = list(c("Class FE", "No", "No", "Yes")), omit.stat = c("ser","rsq", "adj.rsq"))
+stargazer(regnodid, regdid,regdidfe,regdidfe2, type="latex", header=FALSE, 
+          add.lines = list(c("Class FE", "No", "No", "Yes", "Yes"),c("Year FE", "No", "No", "No", "Yes")), omit.stat = c("ser","rsq", "adj.rsq"))
 ```
 
 
@@ -544,13 +546,22 @@ regdidall2<-felm(read4~treat
                  |0
                  |class,
                  allscores)
+
+regdidtwfe<-felm(read4~treat*year_1995+year_1996*treat+year_1997*treat+year_1998*treat
+                 +year_1999*treat+year_2001*treat+year_2002*treat+year_2003*treat
+                 +year_2004*treat+year_2005*treat
+                 |year+class
+                 |0
+                 |class,
+                 allscores)
 ```
 
 ## Simulation: With leads and lags
 \tiny
 ```{r did2bc, results="asis"}
 
-stargazer( regdidall2, type="latex",no.space=TRUE, header=FALSE, single.row=TRUE, omit.stat = "all")
+stargazer( regdidall2, regdidtwfe, type="latex",no.space=TRUE, header=FALSE, 
+           single.row=TRUE, add.lines = list(c("Class and year FE", "No",  "Yes")), omit.stat = "all",  model.numbers          = FALSE)
 
 ```
 
@@ -924,6 +935,7 @@ Several recent new papers reassessing these estimation strategies:
     
 Exercise caution when using this type of approach as our understanding of these estimators, and how to correct for their problems is rapidly evolving. 
 
+- Common correction being applied: Callaway and Sant’Anna (2021)
 
 
 

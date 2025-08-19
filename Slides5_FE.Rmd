@@ -47,7 +47,7 @@ What if I can control for unchanging individual characteristics?
 ## Data Structures: Cross-Section
 
 
-|Individual    |Income      |Schooling   |Female    |
+|Individual    |Income      |Schooling   |Woman  |
 |--------------|------------|------------|----------|
 |1	           |22000       |12          |1         |
 |2	           |57000       |16          |1         |
@@ -59,7 +59,7 @@ Each individual is observed once.
 ## Data Structures: Panel Data
 
 
-|Individual    |Income      |Schooling   |Female  |Year   |
+|Individual    |Income      |Schooling   |Woman   |Year   |
 |--------------|------------|------------|--------|-------|
 |1	           |22000       |12          |1       |2001   |
 |1	           |23000       |12          |1       |2002   |
@@ -90,20 +90,20 @@ Panel Data can be
 
 ## Review: Indicator (Dummy) Variables
 
-If I have multiple Female observation and multiple non-female observations I can control for the effect of being female on wages.  
+If I have multiple Woman observations and multiple non-Woman observations I can control for the effect of being a woman on wages.  
 
 If I have multiple Married observation and multiple non-married observations I can control for the effect of being married on wages.  
 
 
 $$
-Income_{it}=\beta_0+\beta_1 Schooling_{it}+\beta_2Female_i+ \beta_3 Married_{it}+\epsilon.
+Income_{it}=\beta_0+\beta_1 Schooling_{it}+\beta_2Woman_i+ \beta_3 Married_{it}+\epsilon.
 $$
 
 ## Fixed Effects as Individual Indicator Variables
 
 \tiny
 
-|Indiv|Income |School |Female |Married |Year   |Indiv1   |Indiv2|...    |IndivN|
+|Indiv|Income |School |Woman  |Married |Year   |Indiv1   |Indiv2|...    |IndivN|
 |-----|-------|-------|-------|--------|-------|---------|------|-------|------|
 |1	  |22000  |12     |1      |1       |2007   |1        |0     |0      |0     |
 |1    |23000  |12     |1      |1       |2008   |1        |0     |0      |0     |
@@ -119,7 +119,7 @@ $$
 I can estimate:
 \footnotesize
 $$
-Inc_{it}=\beta_0+\beta_1Sch_{it}+\beta_2Fem_i+\beta_3 Mar_{it}+\beta_{a1}Ind1_i+\beta_{a2}Ind2_i+...+\beta_{aN-1}Ind(N-1)_i+\epsilon.
+Inc_{it}=\beta_0+\beta_1Sch_{it}+\beta_2Wom_i+\beta_3 Mar_{it}+\beta_{a1}Ind1_i+\beta_{a2}Ind2_i+...+\beta_{aN-1}Ind(N-1)_i+\epsilon.
 $$
 \normalsize
 What do the $\beta_{ak}$ coefficients tell me?
@@ -129,11 +129,11 @@ Also:
 
 - Why do the $IndN$ indicators only have an $i$ subscript?
 
-- What is the implied assumption if $Fem$ only has an $i$ subscript?
+- What is the implied assumption if $Wom$ only has an $i$ subscript?
 
 - Why are there only (N-1) individual dummies? 
 
-- Will I be able to estimate the $\beta_2$ on $Fem_i$?
+- Will I be able to estimate the $\beta_2$ on $Wom_i$?
 
 - Will I be able to estimate the $\beta_3$ on $Mar_{it}$?
 

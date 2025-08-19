@@ -610,11 +610,6 @@ my_plot3<-ggplot(data = olympics_plot3, aes(x =avg_gdp_cap, y =avg_total_cap ))+
 my_plot3
 ```
 
-## Top Hat question
-
-How should I label the axes?
-
-$\Rightarrow$ Top Hat
 
 
 ## GGplot basics

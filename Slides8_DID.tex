@@ -44,16 +44,19 @@
   \frame{\subsectionpage}
 }
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -84,13 +87,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -98,7 +101,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -107,7 +110,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -142,7 +145,7 @@
 \fi
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={ECON 1190: Applied Econometrics 2: Module 5: Difference in Differences},
   pdfauthor={Claire Duquennois},
@@ -274,14 +277,14 @@ with some other state, like Pennsylvania?
 \begin{frame}{Differencing A:}
 \protect\hypertarget{differencing-a}{}
 \begin{longtable}[]{@{}ll@{}}
-\toprule()
+\toprule\noalign{}
 \ldots.State\ldots{} &
 \ldots\ldots\ldots..Outcome\ldots\ldots\ldots\ldots\ldots{} \\
-\midrule()
+\midrule\noalign{}
 \endhead
 New Jersey & \(Y_{NJ,Nov92}=\alpha_{NJ}+\tau\) \\
 Pennsylvania & \(Y_{PA,Nov92}=\alpha_{PA}\) \\
-\bottomrule()
+\bottomrule\noalign{}
 \end{longtable}
 
 \begin{itemize}
@@ -316,7 +319,7 @@ What if we compare NJ to itself? Say in February 1992 and November 1992?
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1857}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1143}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.7000}}@{}}
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \ldots..State\ldots{}
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -324,11 +327,11 @@ What if we compare NJ to itself? Say in February 1992 and November 1992?
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 \ldots\ldots\ldots.Outcome\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots..
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
 New Jersey & Pre & \(Y_{NJ,Feb92}=\alpha_{NJ}\) \\
 & Post & \(Y_{NJ,Nov92}=\alpha_{NJ}+\lambda_{Nov92}+\tau\) \\
-\bottomrule()
+\bottomrule\noalign{}
 \end{longtable}
 
 Again, this doesn't lead to an unbiased estimate of \(\tau\) since: \[
@@ -352,7 +355,7 @@ time effects:
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.5327}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2150}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0935}}@{}}
-\toprule()
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 State
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
@@ -364,7 +367,7 @@ Outcome
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 2nd Diff
 \end{minipage} \\
-\midrule()
+\midrule\noalign{}
 \endhead
 NJ & Pre & \(Y_{NJ,Feb92}=\alpha_{NJ}\) & & \\
 & Post & \(Y_{NJ,Nov92}=\alpha_{NJ}+\lambda_{Nov92}+\tau\) &
@@ -372,7 +375,7 @@ NJ & Pre & \(Y_{NJ,Feb92}=\alpha_{NJ}\) & & \\
 & & & & \(\tau\) \\
 PA & Pre & \(Y_{PA,Feb92}=\alpha_{PA}\) & \(\lambda_{Nov92}\) & \\
 & Post & \(Y_{PA,Nov92}=\alpha_{PA}+\lambda_{Nov92}\) & & \\
-\bottomrule()
+\bottomrule\noalign{}
 \end{longtable}
 \end{frame}
 
@@ -623,6 +626,17 @@ club on 4th grade reading scores.
 ## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
 ## rank-deficient or indefinite
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regdidfe2}\OtherTok{\textless{}{-}}\FunctionTok{felm}\NormalTok{(read4}\SpecialCharTok{\textasciitilde{}}\NormalTok{post}\SpecialCharTok{+}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{post}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{|}\NormalTok{class}\SpecialCharTok{+}\NormalTok{year,scores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+## rank-deficient or indefinite
+\end{verbatim}
 \end{frame}
 
 \begin{frame}[fragile]{A simulation:}
@@ -631,40 +645,41 @@ club on 4th grade reading scores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{stargazer}\NormalTok{(regnodid, regdid,regdidfe, }\AttributeTok{type=}\StringTok{"latex"}\NormalTok{, }\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{, }
-          \AttributeTok{add.lines =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Class FE"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{)), }\AttributeTok{omit.stat =} \FunctionTok{c}\NormalTok{(}\StringTok{"ser"}\NormalTok{,}\StringTok{"rsq"}\NormalTok{, }\StringTok{"adj.rsq"}\NormalTok{))}
+\FunctionTok{stargazer}\NormalTok{(regnodid, regdid,regdidfe,regdidfe2, }\AttributeTok{type=}\StringTok{"latex"}\NormalTok{, }\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{, }
+          \AttributeTok{add.lines =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Class FE"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{),}\FunctionTok{c}\NormalTok{(}\StringTok{"Year FE"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"Yes"}\NormalTok{)), }\AttributeTok{omit.stat =} \FunctionTok{c}\NormalTok{(}\StringTok{"ser"}\NormalTok{,}\StringTok{"rsq"}\NormalTok{, }\StringTok{"adj.rsq"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+\begin{tabular}{@{\extracolsep{5pt}}lcccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & \multicolumn{3}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-4} 
-\\[-1.8ex] & \multicolumn{3}{c}{read4} \\ 
-\\[-1.8ex] & (1) & (2) & (3)\\ 
+ & \multicolumn{4}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-5} 
+\\[-1.8ex] & \multicolumn{4}{c}{read4} \\ 
+\\[-1.8ex] & (1) & (2) & (3) & (4)\\ 
 \hline \\[-1.8ex] 
- post &  & 7.612$^{***}$ & 7.612$^{***}$ \\ 
-  &  & (1.073) & (1.023) \\ 
-  & & & \\ 
- treat & 27.482$^{***}$ & 18.387$^{***}$ &  \\ 
-  & (1.141) & (1.200) &  \\ 
-  & & & \\ 
- post:treat &  & 9.095$^{***}$ & 9.095$^{***}$ \\ 
-  &  & (1.697) & (1.617) \\ 
-  & & & \\ 
- Constant & 76.775$^{***}$ & 69.163$^{***}$ &  \\ 
-  & (0.721) & (0.759) &  \\ 
-  & & & \\ 
+ post &  & 7.612$^{***}$ & 7.612$^{***}$ &  \\ 
+  &  & (1.073) & (1.023) &  \\ 
+  & & & & \\ 
+ treat & 27.482$^{***}$ & 18.387$^{***}$ &  &  \\ 
+  & (1.141) & (1.200) &  &  \\ 
+  & & & & \\ 
+ post:treat &  & 9.095$^{***}$ & 9.095$^{***}$ & 9.095$^{***}$ \\ 
+  &  & (1.697) & (1.617) & (1.617) \\ 
+  & & & & \\ 
+ Constant & 76.775$^{***}$ & 69.163$^{***}$ &  &  \\ 
+  & (0.721) & (0.759) &  &  \\ 
+  & & & & \\ 
 \hline \\[-1.8ex] 
-Class FE & No & No & Yes \\ 
-Observations & 300 & 600 & 600 \\ 
+Class FE & No & No & Yes & Yes \\ 
+Year FE & No & No & No & Yes \\ 
+Observations & 300 & 600 & 600 & 600 \\ 
 \hline 
 \hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{3}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\textit{Note:}  & \multicolumn{4}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 \end{tabular} 
 \end{table}
 \end{frame}
@@ -912,8 +927,21 @@ Two main types of graphs
                  \SpecialCharTok{|}\DecValTok{0}
                  \SpecialCharTok{|}\NormalTok{class,}
 \NormalTok{                 allscores)}
+
+\NormalTok{regdidtwfe}\OtherTok{\textless{}{-}}\FunctionTok{felm}\NormalTok{(read4}\SpecialCharTok{\textasciitilde{}}\NormalTok{treat}\SpecialCharTok{*}\NormalTok{year\_1995}\SpecialCharTok{+}\NormalTok{year\_1996}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{year\_1997}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{year\_1998}\SpecialCharTok{*}\NormalTok{treat}
+                 \SpecialCharTok{+}\NormalTok{year\_1999}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{year\_2001}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{year\_2002}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{year\_2003}\SpecialCharTok{*}\NormalTok{treat}
+                 \SpecialCharTok{+}\NormalTok{year\_2004}\SpecialCharTok{*}\NormalTok{treat}\SpecialCharTok{+}\NormalTok{year\_2005}\SpecialCharTok{*}\NormalTok{treat}
+                 \SpecialCharTok{|}\NormalTok{year}\SpecialCharTok{+}\NormalTok{class}
+                 \SpecialCharTok{|}\DecValTok{0}
+                 \SpecialCharTok{|}\NormalTok{class,}
+\NormalTok{                 allscores)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning in chol.default(mat, pivot = TRUE, tol = tol): the matrix is either
+## rank-deficient or indefinite
+\end{verbatim}
 \end{frame}
 
 \begin{frame}[fragile]{Simulation: With leads and lags}
@@ -922,46 +950,48 @@ Two main types of graphs
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{stargazer}\NormalTok{( regdidall2, }\AttributeTok{type=}\StringTok{"latex"}\NormalTok{,}\AttributeTok{no.space=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{single.row=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{omit.stat =} \StringTok{"all"}\NormalTok{)}
+\FunctionTok{stargazer}\NormalTok{( regdidall2, regdidtwfe, }\AttributeTok{type=}\StringTok{"latex"}\NormalTok{,}\AttributeTok{no.space=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{, }
+           \AttributeTok{single.row=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{add.lines =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Class and year FE"}\NormalTok{, }\StringTok{"No"}\NormalTok{,  }\StringTok{"Yes"}\NormalTok{)), }\AttributeTok{omit.stat =} \StringTok{"all"}\NormalTok{,  }\AttributeTok{model.numbers          =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{table}[!htbp] \centering 
   \caption{} 
   \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lc} 
+\begin{tabular}{@{\extracolsep{5pt}}lcc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
- & \multicolumn{1}{c}{\textit{Dependent variable:}} \\ 
-\cline{2-2} 
-\\[-1.8ex] & read4 \\ 
+ & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+\cline{2-3} 
+\\[-1.8ex] & \multicolumn{2}{c}{read4} \\ 
 \hline \\[-1.8ex] 
- treat & 19.103$^{***}$ (1.645) \\ 
-  year\_1995 & $-$7.678$^{***}$ (1.750) \\ 
-  year\_1996 & $-$2.936 (1.811) \\ 
-  year\_1997 & $-$4.525$^{***}$ (1.400) \\ 
-  year\_1998 & 0.097 (1.566) \\ 
-  year\_1999 & 0.324 (1.831) \\ 
-  year\_2001 & 4.198$^{***}$ (1.461) \\ 
-  year\_2002 & $-$3.454$^{***}$ (1.269) \\ 
-  year\_2003 & 2.451$^{*}$ (1.308) \\ 
-  year\_2004 & 3.586$^{**}$ (1.639) \\ 
-  year\_2005 & 1.435 (1.553) \\ 
-  treat:year\_1995 & 0.560 (1.871) \\ 
-  treat:year\_1996 & 2.052 (1.859) \\ 
-  treat:year\_1997 & $-$0.201 (1.789) \\ 
-  treat:year\_1998 & 1.034 (1.760) \\ 
-  treat:year\_1999 & 2.162 (1.982) \\ 
-  treat:year\_2001 & 10.420$^{***}$ (1.595) \\ 
-  treat:year\_2002 & 10.152$^{***}$ (1.404) \\ 
-  treat:year\_2003 & 11.851$^{***}$ (1.577) \\ 
-  treat:year\_2004 & 12.257$^{***}$ (1.712) \\ 
-  treat:year\_2005 & 11.290$^{***}$ (1.810) \\ 
-  Constant & 69.903$^{***}$ (1.332) \\ 
+ treat & 19.103$^{***}$ (1.645) &  (0.000) \\ 
+  year\_1995 & $-$7.678$^{***}$ (1.750) &  (0.000) \\ 
+  year\_1996 & $-$2.936 (1.811) &  (0.000) \\ 
+  year\_1997 & $-$4.525$^{***}$ (1.400) &  (0.000) \\ 
+  year\_1998 & 0.097 (1.566) &  (0.000) \\ 
+  year\_1999 & 0.324 (1.831) &  (0.000) \\ 
+  year\_2001 & 4.198$^{***}$ (1.461) &  (0.000) \\ 
+  year\_2002 & $-$3.454$^{***}$ (1.269) &  (0.000) \\ 
+  year\_2003 & 2.451$^{*}$ (1.308) &  (0.000) \\ 
+  year\_2004 & 3.586$^{**}$ (1.639) &  (0.000) \\ 
+  year\_2005 & 1.435 (1.553) &  (0.000) \\ 
+  treat:year\_1995 & 0.560 (1.871) & 0.560 (1.868) \\ 
+  treat:year\_1996 & 2.052 (1.859) & 2.052 (1.856) \\ 
+  treat:year\_1997 & $-$0.201 (1.789) & $-$0.201 (1.786) \\ 
+  treat:year\_1998 & 1.034 (1.760) & 1.034 (1.757) \\ 
+  treat:year\_1999 & 2.162 (1.982) & 2.162 (1.979) \\ 
+  treat:year\_2001 & 10.420$^{***}$ (1.595) & 10.420$^{***}$ (1.593) \\ 
+  treat:year\_2002 & 10.152$^{***}$ (1.404) & 10.152$^{***}$ (1.402) \\ 
+  treat:year\_2003 & 11.851$^{***}$ (1.577) & 11.851$^{***}$ (1.574) \\ 
+  treat:year\_2004 & 12.257$^{***}$ (1.712) & 12.257$^{***}$ (1.709) \\ 
+  treat:year\_2005 & 11.290$^{***}$ (1.810) & 11.290$^{***}$ (1.807) \\ 
+  Constant & 69.903$^{***}$ (1.332) &  \\ 
  \hline \\[-1.8ex] 
+Class and year FE & No & Yes \\ 
 \hline 
 \hline \\[-1.8ex] 
-\textit{Note:}  & \multicolumn{1}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\textit{Note:}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 \end{tabular} 
 \end{table}
 \end{frame}
@@ -982,7 +1012,8 @@ Two main types of graphs
 \end{Shaded}
 
 \begin{verbatim}
-## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
+## `summarise()` has grouped output by 'year'. You can override using the `.groups`
+## argument.
 \end{verbatim}
 
 \begin{Shaded}
@@ -1498,6 +1529,12 @@ Several recent new papers reassessing these estimation strategies:
 Exercise caution when using this type of approach as our understanding
 of these estimators, and how to correct for their problems is rapidly
 evolving.
+
+\begin{itemize}
+\tightlist
+\item
+  Common correction being applied: Callaway and Sant'Anna (2021)
+\end{itemize}
 \end{frame}
 
 \end{document}

@@ -1,5 +1,5 @@
 ---
-title: "Lecture Notes: Applied Econometrics 2"
+title: "Lecture Notes: MQE"
 author: "Claire Duquennois"
 date: ""
 output:
@@ -41,7 +41,7 @@ $$
 where $Y_{NJ,Nov92}(D_{NJ,Nov92}=1)$ is employment in a world where New Jersey raised its minimum wage in April 1992 and $Y_{NJ,Nov92}(D_{NJ,Nov92}=0)$ is employment in a world where New Jersey did not raise its minimum wage in April 1992, \textit{at the exact same moment in time}. In November 1992 only the first occurs, and the second is a counterfactual. So how do we proceed?
 
 
-The standard way to evaluate interventions such as this is the standard differences-in-differences strategy (DiD). DiD is basically a version of panel fixed effects, but can also be used with repeated cross-sections. Let's look at this example using some tables, which hopefully will help give you an idea of the intuition behind DiD, as well as some of it's identifying assumptions. Let's say the intervention, $D$, is the \$0.80 increase in minimum wage, and we want to know the causal effect, $\tau$ of $D$ on $Y$, employment in the fast food industry. Couldn't we just compare New Jersy fast food employment in November 1992 to some other state, like Pennsylvania?
+The standard way to evaluate interventions such as this is the standard differences-in-differences strategy (DiD). DiD is basically a version of panel fixed effects, but can also be used with repeated cross-sections. Let's look at this example using some tables, which hopefully will help give you an idea of the intuition behind DiD, as well as some of it's identifying assumptions. Let's say the intervention, $D$, is the \$0.80 increase in minimum wage, and we want to know the causal effect, $\tau$ of $D$ on $Y$, employment in the fast food industry. Couldn't we just compare New Jersey fast food employment in November 1992 to some other state, like Pennsylvania?
 
 
 |State        |Outcome                     |

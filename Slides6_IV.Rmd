@@ -168,7 +168,7 @@ Woot Woot! We have an unbiased estimator!
 
 2. You are interested in how college attendance influences wages. You instrument with family home proximity to a college.
 
-3. You are interested in how stress affects blood pressure. You instrument with COVID rates in the local community. 
+3. You are interested in how stress affects blood pressure. You instrument with COVID rates in the local community using data from 2020-2021. 
 
 
 ## Some instruments:

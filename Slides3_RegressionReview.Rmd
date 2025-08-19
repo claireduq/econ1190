@@ -53,7 +53,7 @@ my_plot_stats
 ```
 
 \normalsize
-Let's draw a line:  $Y=\beta+0+\beta_1X$ and select $\beta_0$ and $\beta_1$ to ``fit'' the data as \textit{closely} as possible.
+Let's draw a line:  $Y=\beta_0+\beta_1X$ and select $\beta_0$ and $\beta_1$ to ``fit'' the data as \textit{closely} as possible.
 
 ## Reg Review: Line of best fit
 
@@ -206,44 +206,46 @@ Some models also become more complicated:
 
 ## Reg Review: Categorical variables
 
-I make a variable (\textit{Man}):\textit{Man}=1 for men, 0 for women. 
+I make a variable (\textit{Male}):\textit{Male}=1 for males, 0 for females. 
 
-I estimate the model: $\text{Earnings}=\beta_0+\beta_1\text{Man}+\epsilon$
+I estimate the model: $\text{Earnings}=\beta_0+\beta_1\text{Male}+\epsilon$
 \tiny
 ```{r, echo=TRUE}
 data<-read.csv("CPSSW8.csv")
 
-data$man<-NA
-data$man[data$gender=="male"]<-1
-data$man[data$gender=="female"]<-0
+data$sex<-data$gender
 
-model<-lm(earnings~man, data)
+data$male<-NA
+data$male[data$sex=="male"]<-1
+data$male[data$sex=="female"]<-0
+
+model<-lm(earnings~male, data)
 model
 ```
 \normalsize
 
-- $\hat{\beta_0}=16.3$, the estimate for the omitted category (Women)
+- $\hat{\beta_0}=16.3$, the estimate for the omitted category (Females)
 
-- $\hat{\beta_1}=3.7$, the estimated difference between Men and the omitted category.
+- $\hat{\beta_1}=3.7$, the estimated difference between Males and the omitted category.
 
 ## Reg Review: Categorical variables
 
 
-For men the variable Man=1, so predicted earnings are
+For men the variable Male=1, so predicted earnings are
 $$
 \widehat{\text{Earnings}}=16.3+3.7 (1)=20
 $$
-For women the variable Man=0, so predicted earnings are
+For women the variable Male=0, so predicted earnings are
 $$
 \widehat{\text{Earnings}}=16.3+3.7 (0)=16.3
 $$
-This simple regression on a categorical variable essentially gives us the mean earnings of men and women.
+This simple regression on a categorical variable essentially gives us the mean earnings of males and females.
 
 
 
 \tiny
 ```{r}
-gender<-ggplot(data, aes(y=fitted.values(model),x=age,color=gender)) +
+gender<-ggplot(data, aes(y=fitted.values(model),x=age,color=sex)) +
   geom_line() + ylim(0,30)+
   labs(x = "Age", y = "Earnings")+
   theme_minimal()
@@ -252,10 +254,10 @@ gender
 \normalsize
 
 ## Reg Review: Categorical variables
-Now, I estimate the model: $\text{Earnings}=\beta_0+\beta_1\text{Man}+\beta_2 \text{Age}+\epsilon$
+Now, I estimate the model: $\text{Earnings}=\beta_0+\beta_1\text{Male}+\beta_2 \text{Age}+\epsilon$
 \tiny
 ```{r, echo=TRUE}
-model2<-lm(earnings~man+age, data)
+model2<-lm(earnings~male+age, data)
 model2
 ```
 \normalsize
@@ -265,18 +267,18 @@ So $\hat{\beta_0}=8.8$ and $\hat{\beta_1}=3.8$ and $\hat{\beta_2}=0.18$
 ## Reg Review: Categorical variables
 
 
-For men the variable Man=1, so predicted earnings are
+For males the variable Male=1, so predicted earnings are
 $$
 \widehat{\text{Earnings}}=8.8+3.8 (1)+0.18 \times \text{Age}=12.6+0.18 \times \text{Age}
 $$
-For women the variable Man=0, so predicted earnings are
+For females the variable Male=0, so predicted earnings are
 $$
 \widehat{\text{Earnings}}=8.8+3.8 (0)+0.18 \times \text{Age}=8.8+0.18 \times \text{Age}
 $$
 
 \tiny
 ```{r}
-gender2<-ggplot(data, aes(y=fitted.values(model2),x=age,color=gender)) +
+gender2<-ggplot(data, aes(y=fitted.values(model2),x=age,color=sex)) +
   geom_line() + ylim(0,30)+
   labs(x = "Age", y = "Earnings")+
   theme_minimal()
@@ -286,10 +288,10 @@ gender2
 
 
 ## Reg Review: Interaction terms
-Now, I estimate the model: $\text{Earnings}=\beta_0+\beta_1\text{Man}+\beta_2 \text{Age}+\beta_3 \text{Age}\times\text{Man}+\epsilon$
+Now, I estimate the model: $\text{Earnings}=\beta_0+\beta_1\text{Male}+\beta_2 \text{Age}+\beta_3 \text{Age}\times\text{Male}+\epsilon$
 \tiny
 ```{r, echo=TRUE}
-model3<-lm(earnings~man+age+age*man, data)
+model3<-lm(earnings~male+age+age*male, data)
 model3
 ```
 \normalsize
@@ -299,18 +301,18 @@ So $\hat{\beta_0}=11.3$ and $\hat{\beta_1}= -0.6$ and $\hat{\beta_2}= 0.12$ and 
 ## Reg Review: Interaction terms
 
 \small
-For men the variable Man=1, so predicted earnings are
+For men the variable Male=1, so predicted earnings are
 $$
 \widehat{\text{Earnings}}=11.3+(-0.6)(1)+0.12 \times \text{Age}+0.11 (1)\times \text{Age}=10.7+0.23 \times \text{Age}
 $$
-For women the variable Man=0, so predicted earnings are
+For women the variable Male=0, so predicted earnings are
 $$
 \widehat{\text{Earnings}}=11.3+(-0.6)(0)+0.12 \times \text{Age}+0.11 (0)\times \text{Age}=11.3+0.12 \times \text{Age}
 $$
 
 \tiny
 ```{r}
-gender3<-ggplot(data, aes(y=fitted.values(model3),x=age,color=gender)) +
+gender3<-ggplot(data, aes(y=fitted.values(model3),x=age,color=sex)) +
   geom_line() + ylim(0,30)+
   labs(x = "Age", y = "Earnings")+
   theme_minimal()
